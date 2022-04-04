@@ -23,7 +23,7 @@ public class DBConnection {
 	}
 	
 	
-	public static DBConnection getInstance() {
+	public static synchronized DBConnection getInstance() {
 		if(connection == null) {
 			connection = new DBConnection();
 		}

@@ -10,4 +10,8 @@ This is the code review for the Account.java:
    -> outsource the loan fee computation
    -> outsource the annual loan rate computation
    -> splitting the get functions that also printed some sentences
+- appling the SOLID Dependency Inversion Principle part 1
+   -> make an interface for the rate methods
+   -> implement the methods from the interface for the new class 'Rate'
+   
    

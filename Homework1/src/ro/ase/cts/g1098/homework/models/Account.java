@@ -1,5 +1,7 @@
 package ro.ase.cts.g1098.homework.models;
 
+import ro.ase.cts.g1098.homework.interfaces.IRateable;
+
 public class Account {
 	
 	public double loanValue;
@@ -10,6 +12,8 @@ public class Account {
 	
 	public static final float BROKER_FEE = 0.0125f;
 	public static final int DAYS_YEAR = 365;
+	
+	public IRateable accountRate = null;
 	
 	public Account(double loanValue, double rate, AccountType accountType) throws Exception {
 		if (loanValue < 0)
@@ -27,10 +31,11 @@ public class Account {
 		for	(int i= 0; i < accounts.length; i++) {
 			account = accounts[i];
 			if(account.accountType == AccountType.PREMIUM || account.accountType == AccountType.SUPER_PREMIUM) {
-				double annualRate = account.computeAnnualRate(account.getRate(), account.getDaysActive());
-				double loanFee = account.computeLoanFee(account.getLoanValue(), annualRate);
+				double annualRate = account.accountRate.getAnnualRate(DAYS_YEAR, account.getRate(), account.getDaysActive());
+				double monthlyRate = account.accountRate.getMonthlyRate(account.getLoanValue(), annualRate);		
+				double loanFee = account.computeLoanFee(account.getLoanValue(), monthlyRate);
 				double loanFeeWithTax = account.computeLoanFeeExtraTax(BROKER_FEE, loanFee);
-
+				
 				totalFee += loanFeeWithTax;
 			}
 				
@@ -39,12 +44,9 @@ public class Account {
 	}
 	
 	
-	public double computeAnnualRate(double rate, double daysActive) {
-		return Math.pow(getRate(), getDaysActive() / DAYS_YEAR);
-	}
 	
-	public double computeLoanFee(double loanValue, double annualRate) {
-		return (loanValue * annualRate) - loanValue;
+	public double computeLoanFee(double loanValue, double monthlyRate) {
+		return monthlyRate - loanValue;
 	}
 	
 	public double computeLoanFeeExtraTax (double extraTax, double loanFee) {
@@ -106,6 +108,17 @@ public class Account {
 		this.loanValue = loanValue;
 	}
 	
+	
+	
+	
+	public IRateable getAccountRate() {
+		return accountRate;
+	}
+
+	public void setAccountRate(IRateable accountRate) {
+		this.accountRate = accountRate;
+	}
+
 	public String to_string() {
 		return "Loan: " + this.loanValue + "; "
 				+ "rate: " + this.rate + "; "

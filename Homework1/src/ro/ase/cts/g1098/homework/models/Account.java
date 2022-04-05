@@ -1,5 +1,9 @@
 package ro.ase.cts.g1098.homework.models;
 
+import ro.ase.cts.g1098.homework.exceptions.IllegalLoanException;
+import ro.ase.cts.g1098.homework.exceptions.MissingBrokerException;
+import ro.ase.cts.g1098.homework.exceptions.MissingLoanException;
+import ro.ase.cts.g1098.homework.exceptions.MissingRateException;
 import ro.ase.cts.g1098.homework.interfaces.IBroker;
 import ro.ase.cts.g1098.homework.interfaces.ILoan;
 import ro.ase.cts.g1098.homework.interfaces.IRateable;
@@ -15,9 +19,9 @@ public class Account {
 	public ILoan accountLoan = null;
 	public IBroker broker = null;
 	
-	public Account(double loanValue, double rate, int daysActive, AccountType accountType) throws Exception {
+	public Account(double loanValue, double rate, int daysActive, AccountType accountType) throws IllegalLoanException {
 		if (loanValue < 0)
-			throw new Exception();
+			throw new IllegalLoanException();
 		
 		this.loanValue = loanValue;
 		this.rate = rate;
@@ -78,32 +82,32 @@ public class Account {
 	}
 
 	
-	public void setLoanValue(double loanValue) throws Exception {
+	public void setLoanValue(double loanValue) throws IllegalLoanException {
 		if(loanValue<0)
-			throw new Exception();
+			throw new IllegalLoanException();
 		
 		this.loanValue = loanValue;
 	}
 	
 
-	public void setAccountRate(IRateable accountRate) throws Exception {
+	public void setAccountRate(IRateable accountRate) throws MissingRateException {
 		if(accountRate == null) 
-			throw new Exception();
+			throw new MissingRateException();
 
 		this.accountRate = accountRate;
 	}
 
-	public void setAccountLoan(ILoan accountLoan) throws Exception  {
+	public void setAccountLoan(ILoan accountLoan) throws MissingLoanException  {
 		if(accountRate == null) 
-			throw new Exception();
+			throw new MissingLoanException();
 
 		this.accountLoan = accountLoan;
 	}
 
-	public void setBrokerInfo(IBroker broker) throws Exception {
+	public void setBrokerInfo(IBroker broker) throws MissingBrokerException {
 
 		if(broker == null) 
-			throw new Exception();
+			throw new MissingBrokerException();
 		
 		this.broker= broker;
 	}

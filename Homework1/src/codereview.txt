@@ -19,3 +19,4 @@ This is the code review for the Account.java:
    -> adding 2 interfaces for the loan and for the broker which is more efficient than the general one
 - removing the unused methods (setters or printers)
 - adding exceptions for the interface methods
+- making specific exceptions and throwing them

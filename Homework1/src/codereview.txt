@@ -21,3 +21,26 @@ This is the code review for the Account.java:
 - adding exceptions for the interface methods
 - making specific exceptions and throwing them
 - refactoring toString method
+
+
+
+---------------------------------CODE REVIEW---------------------------------
+
+formatting:
+   -> random spaces (+ - spaces when unnecessary), braces
+   -> camelCase and snake_case mixed
+   -> unnecessary if-else methods
+   -> unnecessary comments
+   -> unnecessary magic numbers that could be replaced in an enum file
+   
+functions & classes:
+   -> classes should be small with less duties, same for the functions
+   -> some functions doesn't do important or necessary things
+   
+meaningful names:
+   -> nonspecific variables, they are too general
+   -> redundant variables ('vb' and 'temp') which were unused and provoke unwanted warnings
+   
+exceptions:
+   -> should be a specific exception for each function for not returning null
+   

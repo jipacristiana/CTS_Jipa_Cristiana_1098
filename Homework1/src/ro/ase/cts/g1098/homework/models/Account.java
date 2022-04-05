@@ -86,18 +86,29 @@ public class Account {
 	}
 	
 
-	public void setAccountRate(IRateable accountRate) {
+	public void setAccountRate(IRateable accountRate) throws Exception {
+		if(accountRate == null) 
+			throw new Exception();
+
 		this.accountRate = accountRate;
 	}
 
-	
-	public void setAccountLoan(ILoan accountLoan) {
+	public void setAccountLoan(ILoan accountLoan) throws Exception  {
+		if(accountRate == null) 
+			throw new Exception();
+
 		this.accountLoan = accountLoan;
 	}
 
-	public void setBroker(IBroker broker) {
-		this.broker = broker;
+	public void setBrokerInfo(IBroker broker) throws Exception {
+
+		if(broker == null) 
+			throw new Exception();
+		
+		this.broker= broker;
 	}
+	
+	
 	
 	public String to_string() {
 		return "Loan: " + this.loanValue + "; "

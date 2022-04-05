@@ -1,5 +1,7 @@
 package ro.ase.cts.g1098.homework.models;
 
+import ro.ase.cts.g1098.homework.interfaces.IBroker;
+import ro.ase.cts.g1098.homework.interfaces.ILoan;
 import ro.ase.cts.g1098.homework.interfaces.IRateable;
 
 public class Account {
@@ -9,18 +11,19 @@ public class Account {
 	public int daysActive;
 	public AccountType accountType;
 
-	
-	public static final float BROKER_FEE = 0.0125f;
-	public static final int DAYS_YEAR = 365;
+
 	
 	public IRateable accountRate = null;
+	public ILoan accountLoan = null;
+	public IBroker broker = null;
 	
-	public Account(double loanValue, double rate, AccountType accountType) throws Exception {
+	public Account(double loanValue, double rate, int daysActive, AccountType accountType) throws Exception {
 		if (loanValue < 0)
 			throw new Exception();
 		
 		this.loanValue = loanValue;
 		this.rate = rate;
+		this.daysActive = daysActive;
 		this.accountType = accountType;
 	}
 	
@@ -31,11 +34,11 @@ public class Account {
 		for	(int i= 0; i < accounts.length; i++) {
 			account = accounts[i];
 			if(account.accountType == AccountType.PREMIUM || account.accountType == AccountType.SUPER_PREMIUM) {
-				double annualRate = account.accountRate.getAnnualRate(DAYS_YEAR, account.getRate(), account.getDaysActive());
+				int daysYears = account.accountRate.getDaysYears();
+				double annualRate = account.accountRate.getAnnualRate(daysYears, account.getRate(), (int) account.getDaysActive());
 				double monthlyRate = account.accountRate.getMonthlyRate(account.getLoanValue(), annualRate);		
-				double loanFee = account.computeLoanFee(account.getLoanValue(), monthlyRate);
-				double loanFeeWithTax = account.computeLoanFeeExtraTax(BROKER_FEE, loanFee);
-				
+				double loanFee = account.accountLoan.computeLoanFee(daysYears, account.getLoanValue());
+				double loanFeeWithTax = account.accountLoan.computeLoanFeeExtraTax(daysYears, loanFee);
 				totalFee += loanFeeWithTax;
 			}
 				
@@ -123,6 +126,22 @@ public class Account {
 		return "Loan: " + this.loanValue + "; "
 				+ "rate: " + this.rate + "; "
 				+ "days active:" + daysActive + "; Type: " + accountType + ";";
+	}
+
+	public ILoan getAccountLoan() {
+		return accountLoan;
+	}
+
+	public void setAccountLoan(ILoan accountLoan) {
+		this.accountLoan = accountLoan;
+	}
+
+	public IBroker getBroker() {
+		return broker;
+	}
+
+	public void setBroker(IBroker broker) {
+		this.broker = broker;
 	}
 	
 	

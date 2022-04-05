@@ -15,3 +15,5 @@ This is the code review for the Account.java:
    -> implement the methods from the interface for the new class 'Rate'
  - applying the SOLID Dependency Inversion Principle part 2
    -> use a class reference to access that info from Account class 
+- applying the SOLID Interface Segregation Principle
+   -> adding 2 interfaces for the loan and for the broker which is more efficient than the general one

@@ -112,15 +112,13 @@ public class Account {
 		this.broker= broker;
 	}
 	
-	
-	
-	public String to_string() {
-		return "Loan: " + this.loanValue + "; "
-				+ "rate: " + this.rate + "; "
-				+ "days active:" + daysActive + "; Type: " + accountType + ";";
-	}
 
-	
+	@Override
+	public String toString() {
+		return "Account [loanValue=" + loanValue + ", rate=" + rate + ", daysActive=" + daysActive + ", accountType="
+				+ accountType + ", accountRate=" + accountRate + ", accountLoan=" + accountLoan + ", broker=" + broker
+				+ "]";
+	}
 
 	
 }

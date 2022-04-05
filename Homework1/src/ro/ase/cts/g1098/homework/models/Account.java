@@ -9,9 +9,8 @@ public class Account {
 	public Account(double loanValue, double rate, AccountType accountType) throws Exception {
 		if (loanValue < 0)
 			throw new Exception();
-		else
-			this.loanValue = loanValue;
 		
+		this.loanValue = loanValue;
 		this.rate = rate;
 		this.accountType = accountType;
 	}
@@ -47,8 +46,8 @@ public class Account {
 	public void setLoanValue(double loanValue) throws Exception {
 		if(loanValue<0)
 			throw new Exception();
-		else 
-			this.loanValue = loanValue;
+		
+		this.loanValue = loanValue;
 	}
 	
 	public String to_string() {

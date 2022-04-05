@@ -4,3 +4,10 @@ This is the code review for the Account.java:
 - renaming some nonspecific variables and replacing some parts of the code for better understanding (camelCase and snake_case)
 - removing 2 redundant variables ('vb' and 'temp') which were unused and provoke unwanted warnings
 - removing 2 redundant else cases
+- removing magic numbers (.0125 and 365) with the comment and replacing them with static variables
+- appling the SOLID Single Responsability Principle
+   -> outsource the total fee for year computation 
+   -> outsource the loan fee computation
+   -> outsource the annual loan rate computation
+   -> splitting the get functions that also printed some sentences
+   

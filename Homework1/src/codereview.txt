@@ -17,3 +17,4 @@ This is the code review for the Account.java:
    -> use a class reference to access that info from Account class 
 - applying the SOLID Interface Segregation Principle
    -> adding 2 interfaces for the loan and for the broker which is more efficient than the general one
+- removing the unused methods (setters or printers)

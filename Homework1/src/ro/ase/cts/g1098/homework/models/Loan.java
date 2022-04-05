@@ -6,8 +6,7 @@ public class Loan implements ILoan {
 
 	@Override
 	public void showLoan(double loanValue, String loanType) {
-		System.out.println(String.format("The " + loanType + " loan value is: %f", loanValue));
-		
+		System.out.println(String.format("The " + loanType + " loan value is: %f", loanValue));	
 	}
 
 	@Override

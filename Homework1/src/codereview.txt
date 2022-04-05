@@ -1,2 +1,4 @@
 This is the code review for the Account.java:
 - reformatting the code for an easier reading at first sight before applying other methods (eliminate the random spaces, add spaces when it's needed, eliminate some braces etc.)
+- adding an enum for replacing the static variables
+- renaming some nonspecific variables and replacing some parts of the code for better understanding

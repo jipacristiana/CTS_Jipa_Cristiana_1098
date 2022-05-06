@@ -13,7 +13,7 @@ public class TestPrototype {
         System.out.println(bookingBucharestA);
         System.out.println(bookingConstantaB);
         System.out.println(booking2BucharestA);
-        System.out.println(booking2BucharestA);
+        System.out.println(booking2ConstantaB);
         
 	}
 

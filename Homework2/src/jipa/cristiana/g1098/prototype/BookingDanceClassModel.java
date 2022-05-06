@@ -21,7 +21,7 @@ public class BookingDanceClassModel implements Cloneable{
 	}
 
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
+	public Object clone() throws CloneNotSupportedException {
 		BookingDanceClassModel copy = new BookingDanceClassModel();
 		copy.danceStudios = this.danceStudios;
 		copy.bookingContent = this.bookingContent;

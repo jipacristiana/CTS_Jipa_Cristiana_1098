@@ -1,4 +1,4 @@
-Logging system
+Logging system //singleton
 
 2. In order to manage app logs define a module that will save all logs in a single/unique file
 	- there will be unique log files for errors and general info
